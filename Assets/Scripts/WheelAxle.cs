@@ -14,6 +14,19 @@ namespace Racing
 
         [SerializeField] private bool isMotor;
         [SerializeField] private bool isSteer;
+        
+        [SerializeField] private float antiRollForce;
+        [SerializeField] private float additionalWheelDownforce;
+
+        [Header ("Friction settings")]
+        [SerializeField] private float baseForwardStiffness = 1.5f;
+        [SerializeField] private float stabilityForwardFactor = 1.0f;
+
+        [SerializeField] private float baseSidewaysStiffness = 2.0f;
+        [SerializeField] private float stabilitySidewaysFactor = 1.0f;
+
+        public bool IsMotor => isMotor;
+        public bool IsSteer => isSteer;
 
         private WheelHit leftWheelHit;
         private WheelHit rightWheelHit;
@@ -92,15 +105,49 @@ namespace Racing
         }
         private void ApplyAntiRoll()
         {
-            
+            float travelL = 1.0f;
+            float travelR = 1.0f;
+
+            if (leftWheelCollider.isGrounded == true) travelL = ( -leftWheelCollider.transform.InverseTransformPoint(leftWheelHit.point).y 
+                    - leftWheelCollider.radius) / leftWheelCollider.suspensionDistance;
+            if (rightWheelCollider.isGrounded == true) travelR = ( -rightWheelCollider.transform.InverseTransformPoint(rightWheelHit.point).y 
+                    - rightWheelCollider.radius ) / rightWheelCollider.suspensionDistance;
+            float forceDir = travelL - travelR;
+
+            if (leftWheelCollider.isGrounded == true) leftWheelCollider.attachedRigidbody.AddForceAtPosition
+                    (leftWheelCollider.transform.up * -forceDir * antiRollForce, leftWheelCollider.transform.position);
+            if (rightWheelCollider.isGrounded == true) rightWheelCollider.attachedRigidbody.AddForceAtPosition
+                    (rightWheelCollider.transform.up * forceDir * antiRollForce, rightWheelCollider.transform.position);
         }
         private void ApplyDownForce()
         {
-            
+            if (leftWheelCollider.isGrounded == true)
+                leftWheelCollider.attachedRigidbody.AddForceAtPosition
+                    (leftWheelHit.normal * -additionalWheelDownforce * leftWheelCollider.attachedRigidbody.velocity.magnitude, 
+                    leftWheelCollider.transform.position);
+            if (rightWheelCollider.isGrounded == true)
+                rightWheelCollider.attachedRigidbody.AddForceAtPosition
+                    (rightWheelHit.normal * -additionalWheelDownforce * rightWheelCollider.attachedRigidbody.velocity.magnitude,
+                    rightWheelCollider.transform.position);
         }
         private void CorrectStiffness()
         {
-            
+            WheelFrictionCurve leftForward = leftWheelCollider.forwardFriction;
+            WheelFrictionCurve rightForward = rightWheelCollider.forwardFriction;
+
+            WheelFrictionCurve leftSideways = leftWheelCollider.sidewaysFriction;
+            WheelFrictionCurve rightSideways = rightWheelCollider.sidewaysFriction;
+
+            leftForward.stiffness = baseForwardStiffness + Mathf.Abs(leftWheelHit.forwardSlip) * stabilityForwardFactor;
+            rightForward.stiffness = baseForwardStiffness + Mathf.Abs(rightWheelHit.forwardSlip) * stabilityForwardFactor;
+
+            leftSideways.stiffness = baseSidewaysStiffness + Mathf.Abs(leftWheelHit.sidewaysSlip) * stabilitySidewaysFactor;
+            rightSideways.stiffness = baseSidewaysStiffness + Mathf.Abs(rightWheelHit.sidewaysSlip) * stabilitySidewaysFactor;
+
+            leftWheelCollider.forwardFriction = leftForward;
+            rightWheelCollider.forwardFriction = rightForward;
+            leftWheelCollider.sidewaysFriction = leftSideways;
+            rightWheelCollider.sidewaysFriction = rightSideways;
         }
     }
 }

@@ -4,10 +4,14 @@ namespace Racing
 {
     [RequireComponent(typeof(CarChassis))]
     public class Car : MonoBehaviour
-    {
-        [SerializeField] private float maxMotorTorque;
+    {      
         [SerializeField] private float maxSteerAngle;
         [SerializeField] private float maxBrakeTorque;
+
+        [SerializeField] private AnimationCurve engineTorqueCurve;
+        [SerializeField] private float maxMotorTorque;
+        [SerializeField] private float maxSpeed;
+        public float LinearVelocity => chassis.LinearVelocity;
 
         private CarChassis chassis;
 
@@ -23,7 +27,12 @@ namespace Racing
         }
         private void Update()
         {
-            chassis.MotorTorque = ThrottleControl * maxMotorTorque;
+            float engineTorque = engineTorqueCurve.Evaluate( LinearVelocity / maxSpeed ) * maxMotorTorque;
+
+            if (LinearVelocity >= maxSpeed) engineTorque = 0;
+            Debug.Log($"{(int)LinearVelocity}, {engineTorque}, {LinearVelocity / maxSpeed}");
+
+            chassis.MotorTorque = ThrottleControl * -engineTorque;
             chassis.SteerAngle = SteerControl * maxSteerAngle;
             chassis.BrakeTorque = BrakeControl * maxBrakeTorque;
             //chassis. = HandBrakeControl;
