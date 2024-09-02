@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace Racing
 {
@@ -46,6 +47,20 @@ namespace Racing
             UpdeteAngularDrag();
             UpdateDownForce();
             UpdateWheelAxes();
+        }
+        public float GetWheelSpeed()
+        {
+            return GetAverageRpm() * WheelAxles[0].GetAverageWheelRadius() * 2 * 0.1885f;
+        }
+        public float GetAverageRpm()
+        {
+            float sum = 0;
+
+            for (int i = 0; i < WheelAxles.Length; i++)
+            {
+                sum += WheelAxles[i].GetAverageRpm();
+            }
+            return sum / WheelAxles.Length;
         }
 
         private void UpdeteAngularDrag()

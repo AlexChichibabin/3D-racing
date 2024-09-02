@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748171, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1375,6 +1375,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   car: {fileID: 1546427091}
+  brakeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.011310577
+      value: 1.0307251
+      inSlope: -0.032086477
+      outSlope: -0.032086477
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.14349319
+    - serializedVersion: 3
+      time: 0.78805345
+      value: 0.6766825
+      inSlope: -0.99087524
+      outSlope: -0.99087524
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.11999895
+      outWeight: 0.11209148
+    - serializedVersion: 3
+      time: 0.99572754
+      value: -0.008483887
+      inSlope: -3.2992387
+      outSlope: -3.2992387
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  autoBrakeStrength: 0.14
 --- !u!4 &1618410824
 Transform:
   m_ObjectHideFlags: 0

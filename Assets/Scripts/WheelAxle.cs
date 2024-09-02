@@ -44,6 +44,14 @@ namespace Racing
             SyncMeshTransform();
 
         }
+        public float GetAverageRpm()
+        {
+            return (leftWheelCollider.rpm + rightWheelCollider.rpm) * 0.5f;
+        }
+        public float GetAverageWheelRadius()
+        {
+            return (leftWheelCollider.radius + rightWheelCollider.radius) * 0.5f;
+        }
 
         public void ApplySteerAngle(float steerAngle, float wheelWidth, float wheelBaseLength)
         {

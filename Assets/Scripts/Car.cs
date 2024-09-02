@@ -12,6 +12,8 @@ namespace Racing
         [SerializeField] private float maxMotorTorque;
         [SerializeField] private float maxSpeed;
         public float LinearVelocity => chassis.LinearVelocity;
+        public float WheelSpeed => chassis.GetWheelSpeed();
+        public float MaxSpeed => maxSpeed;
 
         private CarChassis chassis;
 
@@ -30,7 +32,7 @@ namespace Racing
             float engineTorque = engineTorqueCurve.Evaluate( LinearVelocity / maxSpeed ) * maxMotorTorque;
 
             if (LinearVelocity >= maxSpeed) engineTorque = 0;
-            Debug.Log($"{(int)LinearVelocity}, {engineTorque}, {LinearVelocity / maxSpeed}");
+            
 
             chassis.MotorTorque = ThrottleControl * -engineTorque;
             chassis.SteerAngle = SteerControl * maxSteerAngle;
