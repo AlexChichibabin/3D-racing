@@ -1293,9 +1293,11 @@ MonoBehaviour:
     m_RotationOrder: 4
   maxMotorTorque: 30000
   maxSpeed: 350
+  handBrakeFactor: 7
   ThrottleControl: 0
   SteerControl: 0
   BrakeControl: 0
+  HandBrakeControl: 0
 --- !u!114 &1546427092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1315,24 +1317,30 @@ MonoBehaviour:
     rightWheelMesh: {fileID: 1956382503}
     isMotor: 1
     isSteer: 1
-    antiRollForce: 40000
-    additionalWheelDownforce: 300
+    antiRollForceMin: 100
+    antiRollForceMax: 40000
+    additionalWheelDownforce: 200
     baseForwardStiffness: 1.5
     stabilityForwardFactor: 1.5
     baseSidewaysStiffness: 2
     stabilitySidewaysFactor: 1
+    MaxSpeed_: 0
+    LinearVelocity_: 0
   - leftWheelCollider: {fileID: 397861973}
     rightWheelCollider: {fileID: 437389142}
     leftWheelMesh: {fileID: 298382908}
     rightWheelMesh: {fileID: 943258658}
     isMotor: 1
     isSteer: 0
-    antiRollForce: 40000
-    additionalWheelDownforce: 300
+    antiRollForceMin: 100
+    antiRollForceMax: 40000
+    additionalWheelDownforce: 200
     baseForwardStiffness: 1.5
     stabilityForwardFactor: 1.5
     baseSidewaysStiffness: 2
     stabilitySidewaysFactor: 1
+    MaxSpeed_: 0
+    LinearVelocity_: 0
   wheelWidth: 2.6
   wheelBaseLength: 5.78
   centerOfMass: {fileID: 151907815}
@@ -1345,6 +1353,7 @@ MonoBehaviour:
   MotorTorque: 300
   SteerAngle: 15.3
   BrakeTorque: 407.5
+  HandBrakeTorque: 0
 --- !u!1 &1618410822
 GameObject:
   m_ObjectHideFlags: 0
@@ -1401,6 +1410,30 @@ MonoBehaviour:
       value: -0.008483887
       inSlope: -3.2992387
       outSlope: -3.2992387
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  steerCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -0.09522108
+      outSlope: -0.09522108
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.0989819
+    - serializedVersion: 3
+      time: 1
+      value: 0.5
+      inSlope: -0.5
+      outSlope: -0.5
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334

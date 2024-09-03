@@ -15,7 +15,9 @@ namespace Racing
         [SerializeField] private bool isMotor;
         [SerializeField] private bool isSteer;
         
-        [SerializeField] private float antiRollForce;
+        [SerializeField] private float antiRollForceMin;
+        [SerializeField] private float antiRollForceMax;
+        private float antiRollForce;
         [SerializeField] private float additionalWheelDownforce;
 
         [Header ("Friction settings")]
@@ -30,7 +32,8 @@ namespace Racing
 
         private WheelHit leftWheelHit;
         private WheelHit rightWheelHit;
-
+        public float MaxSpeed_;
+        public float LinearVelocity_;
 
         //public API
         public void Update()
@@ -88,6 +91,7 @@ namespace Racing
         {
             leftWheelCollider.brakeTorque = brakeTorque;
             rightWheelCollider.brakeTorque = brakeTorque;
+            //Debug.Log(brakeTorque);
         }
 
         //private
@@ -156,6 +160,16 @@ namespace Racing
             rightWheelCollider.forwardFriction = rightForward;
             leftWheelCollider.sidewaysFriction = leftSideways;
             rightWheelCollider.sidewaysFriction = rightSideways;
+        }
+
+        public void UpdateAntiRoll()
+        {
+            if (LinearVelocity_ / MaxSpeed_ < 0.1f)
+            {
+                antiRollForce = antiRollForceMin;
+            }
+            else antiRollForce = antiRollForceMax;
+            Debug.Log(LinearVelocity_);
         }
     }
 }

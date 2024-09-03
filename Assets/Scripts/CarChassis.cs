@@ -13,7 +13,9 @@ namespace Racing
         [SerializeField] private float wheelBaseLength;
 
         [SerializeField] private Transform centerOfMass;
-        private new Rigidbody rigidBody;
+        private Rigidbody rigidBody;
+
+        
 
         public float LinearVelocity => rigidBody.velocity.magnitude * 3.6f;
 
@@ -31,6 +33,9 @@ namespace Racing
         public float MotorTorque;
         public float SteerAngle;
         public float BrakeTorque;
+        public float HandBrakeTorque;
+
+
 
 
         private void Start()
@@ -62,6 +67,10 @@ namespace Racing
             }
             return sum / WheelAxles.Length;
         }
+        public WheelAxle GetWheelAxle(int index)
+        {
+            return WheelAxles[index];
+        }
 
         private void UpdeteAngularDrag()
         {
@@ -82,14 +91,15 @@ namespace Racing
                 if (WheelAxles[i].IsMotor) amountMotorWheel += 2;
             }
 
-
-                for (int i = 0; i < WheelAxles.Length; i++)
+            for (int i = 0; i < WheelAxles.Length; i++)
             {
                 WheelAxles[i].Update();
 
                 WheelAxles[i].ApplyMotorTorque(MotorTorque / amountMotorWheel);
                 WheelAxles[i].ApplySteerAngle(SteerAngle, wheelWidth, wheelBaseLength);
                 WheelAxles[i].ApplyBrakeTorque(BrakeTorque);
+                WheelAxles[1].ApplyBrakeTorque(HandBrakeTorque);
+                WheelAxles[i].UpdateAntiRoll();
             }
         }
     }
