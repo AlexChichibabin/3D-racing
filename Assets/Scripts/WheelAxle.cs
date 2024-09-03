@@ -32,8 +32,8 @@ namespace Racing
 
         private WheelHit leftWheelHit;
         private WheelHit rightWheelHit;
-        public float MaxSpeed_;
-        public float LinearVelocity_;
+        [HideInInspector] public float MaxSpeed_;
+        [HideInInspector] public float LinearVelocity_;
 
         //public API
         public void Update()
@@ -93,14 +93,11 @@ namespace Racing
             rightWheelCollider.brakeTorque = brakeTorque;
             //Debug.Log(brakeTorque);
         }
-
-        //private
         private void SyncMeshTransform()
         {
             UpdateWheelTransform(leftWheelCollider, leftWheelMesh);
             UpdateWheelTransform(rightWheelCollider, rightWheelMesh);
         }
-
         private void UpdateWheelTransform(WheelCollider wheelCollider, Transform wheelTransform)
         {
             Vector3 position;
@@ -161,7 +158,6 @@ namespace Racing
             leftWheelCollider.sidewaysFriction = leftSideways;
             rightWheelCollider.sidewaysFriction = rightSideways;
         }
-
         public void UpdateAntiRoll()
         {
             if (LinearVelocity_ / MaxSpeed_ < 0.1f)
@@ -169,7 +165,7 @@ namespace Racing
                 antiRollForce = antiRollForceMin;
             }
             else antiRollForce = antiRollForceMax;
-            Debug.Log(LinearVelocity_);
+            Debug.Log(antiRollForce);
         }
     }
 }

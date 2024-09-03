@@ -28,10 +28,8 @@ namespace Racing
                 UpdateAutoBrake();
             }
             car.HandBrakeControl = handBrakeAxis;
-
             
             UpdateSteer();
-
 
             //Debug.Log($"{car.SteerControl}, {(int)wheelSpeed}, {car.WheelSpeed / car.MaxSpeed}");
 
@@ -52,14 +50,6 @@ namespace Racing
         private void UpdateSteer()
         {
             car.SteerControl = steerCurve.Evaluate(-car.WheelSpeed / car.MaxSpeed) * horizontalAxis;
-        }
-        private void UpdateThrottles()
-        {
-
-        }
-        private void UpdateThrottlef()
-        {
-
         }
         private void UpdateAutoBrake()
         {

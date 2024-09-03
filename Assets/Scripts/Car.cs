@@ -26,6 +26,10 @@ namespace Racing
         public float BrakeControl;
         public float HandBrakeControl;
 
+        private void Awake()
+        {
+            
+        }
         private void Start()
         {
             chassis = GetComponent<CarChassis>();
@@ -33,12 +37,17 @@ namespace Racing
             for (int i = 0; i < 2; i++)
             {
                 chassis.GetWheelAxle(i).MaxSpeed_ = maxSpeed;
-                chassis.GetWheelAxle(i).LinearVelocity_ = LinearVelocity;
+                //chassis.GetWheelAxle(i).LinearVelocity_ = LinearVelocity;
             }
         }
         private void Update()
         {
             float engineTorque = engineTorqueCurve.Evaluate( LinearVelocity / maxSpeed ) * maxMotorTorque;
+
+            for (int i = 0; i < 2; i++)
+            {
+                chassis.GetWheelAxle(i).LinearVelocity_ = LinearVelocity;
+            }
 
             if (LinearVelocity >= maxSpeed) engineTorque = 0;              
 
