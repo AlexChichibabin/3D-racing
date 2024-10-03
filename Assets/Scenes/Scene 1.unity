@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748171, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1462,7 +1462,7 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 136
@@ -1470,32 +1470,32 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.06446634
-      value: 0.9013969
-      inSlope: -4.3125453
-      outSlope: -4.3125453
+      time: 0.1
+      value: 0.4
+      inSlope: 2.23005
+      outSlope: 2.23005
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.020120656
+      inWeight: 0.3109774
+      outWeight: 1
     - serializedVersion: 3
-      time: 0.10083325
-      value: 0.73635745
-      inSlope: -0.15897502
-      outSlope: -0.15897502
+      time: 0.3
+      value: 0.91072565
+      inSlope: 0.52478987
+      outSlope: 0.52478987
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.09133899
+      inWeight: 0.36170822
+      outWeight: 0.11554302
     - serializedVersion: 3
-      time: 0.62407815
-      value: 0.41768518
-      inSlope: -0.9960038
-      outSlope: -0.9960038
+      time: 0.9196454
+      value: 0.87716043
+      inSlope: -0.92401433
+      outSlope: -0.92401433
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0.13843808
+      outWeight: 0.3736394
     - serializedVersion: 3
       time: 1
       value: 0.1
@@ -1508,7 +1508,21 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  maxMotorTorque: 30000
+  engineMaxTorque: 10000
+  engineTorque: 0
+  engineRPM: 0
+  engineMinRPM: 800
+  engineMaxRPM: 7000
+  gears:
+  - 3.77
+  - 2.6
+  - 1.6
+  - 1
+  - 0.7
+  finalDriveRatio: 3.7
+  selectedGear: 3.77
+  rearGear: -3.7
+  selectedGearIndex: 0
   maxSpeed: 350
   handBrakeFactor: 7
   ThrottleControl: 0
