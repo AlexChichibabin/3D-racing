@@ -23,6 +23,8 @@ namespace Racing
         [SerializeField] private float selectedGear;
         [SerializeField] private float rearGear;
         [SerializeField] private int selectedGearIndex;
+        [SerializeField] private int upShiftEngineRPM;
+        [SerializeField] private int downShiftEngineRPM;
 
         [SerializeField] private float maxSpeed;
 
@@ -42,10 +44,6 @@ namespace Racing
         public float BrakeControl;
         public float HandBrakeControl;
 
-        private void Awake()
-        {
-            
-        }
         private void Start()
         {
             chassis = GetComponent<CarChassis>();
@@ -61,6 +59,7 @@ namespace Racing
             UpdateEngineTorque();
 
             //float engineTorque = engineTorqueCurve.Evaluate( LinearVelocity / maxSpeed ) * engineMaxTorque; 
+            AutoGearShift();
 
             for (int i = 0; i < 2; i++)
             {
@@ -73,6 +72,10 @@ namespace Racing
             chassis.SteerAngle = SteerControl * maxSteerAngle;
             chassis.BrakeTorque = BrakeControl * maxBrakeTorque;
             chassis.HandBrakeTorque = HandBrakeControl * maxBrakeTorque * handBrakeFactor;
+
+            
+
+            Debug.Log("LV " + (int)LinearVelocity);
         }
 
         private void UpdateEngineTorque()
@@ -89,7 +92,7 @@ namespace Racing
             gearIndex = Mathf.Clamp(gearIndex, 0, gears.Length - 1);
 
             selectedGear = gears[gearIndex];
-            selectedGearIndex = gearIndex;
+            selectedGearIndex = gearIndex; // debugUseOnly
         }
         public void UpGear()
         {
@@ -99,5 +102,23 @@ namespace Racing
         {
             ShiftGear(selectedGearIndex - 1);
         }
+        public void ShiftToReverseGear()
+        {
+            selectedGear = rearGear;
+            selectedGearIndex = -1; // debugUseOnly
+        }
+        public void ShiftToNeutral()
+        {
+            selectedGear = 0;
+            selectedGearIndex = -1; // debugUseOnly
+        }
+        private void AutoGearShift()
+        {
+            if (selectedGear < 0) return;
+
+            if (engineRPM > upShiftEngineRPM) UpGear();
+            if (engineRPM < downShiftEngineRPM) DownGear();
+        }
+        
     }
 }

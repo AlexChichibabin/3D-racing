@@ -31,14 +31,17 @@ namespace Racing
             
             UpdateSteer();
 
-            //Debug.Log($"{car.SteerControl}, {(int)wheelSpeed}, {car.WheelSpeed / car.MaxSpeed}");
+            //debug
+            if (Input.GetKeyDown(KeyCode.E)) car.UpGear();
+            if (Input.GetKeyDown(KeyCode.Q)) car.DownGear();
+
 
         }
         private void UpdateThrottle()
         {
             if (Mathf.Sign(-verticalAxis) == Mathf.Sign(wheelSpeed) || Mathf.Abs(wheelSpeed) < 0.5f)
             {
-                car.ThrottleControl = verticalAxis;
+                car.ThrottleControl = Mathf.Abs(verticalAxis);
                 car.BrakeControl = 0;
             }
             else if (verticalAxis != 0)
@@ -46,6 +49,9 @@ namespace Racing
                 car.ThrottleControl = 0;
                 car.BrakeControl = brakeCurve.Evaluate(Mathf.Abs(wheelSpeed) / car.MaxSpeed);
             }
+
+            if(verticalAxis < 0 && wheelSpeed > -0.5f && wheelSpeed < 0.5f) car.ShiftToReverseGear();
+            if (verticalAxis > 0 && wheelSpeed > -0.5f && wheelSpeed < 0.5f) car.ShiftToNeutral();
         }
         private void UpdateSteer()
         {

@@ -45,7 +45,6 @@ namespace Racing
             CorrectStiffness();
 
             SyncMeshTransform();
-
         }
         public float GetAverageRpm()
         {
@@ -91,7 +90,6 @@ namespace Racing
         {
             leftWheelCollider.brakeTorque = brakeTorque;
             rightWheelCollider.brakeTorque = brakeTorque;
-            //Debug.Log(brakeTorque);
         }
         private void SyncMeshTransform()
         {
@@ -165,7 +163,6 @@ namespace Racing
                 antiRollForce = antiRollForceMin;
             }
             else antiRollForce = antiRollForceMax;
-            Debug.Log(antiRollForce);
         }
     }
 }
