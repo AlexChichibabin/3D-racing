@@ -1,4 +1,6 @@
 using UnityEngine;
+using System;
+//using UnityEngine.Events;
 
 namespace Racing
 {
@@ -26,10 +28,12 @@ namespace Racing
         [SerializeField] private int upShiftEngineRPM;
         [SerializeField] private int downShiftEngineRPM;
 
+        [Header ("UI")]
+        [SerializeField] private UISpeedGearEngine speedGearEngineUI;
+
+
         [SerializeField] private float maxSpeed;
-
         [SerializeField] private float handBrakeFactor = 1.0f;
-
 
         public float LinearVelocity => chassis.LinearVelocity;
         public float WheelSpeed => chassis.GetWheelSpeed();
@@ -51,14 +55,11 @@ namespace Racing
             for (int i = 0; i < 2; i++)
             {
                 chassis.GetWheelAxle(i).MaxSpeed_ = maxSpeed;
-                //chassis.GetWheelAxle(i).LinearVelocity_ = LinearVelocity;
             }
         }
         private void Update()
         {
             UpdateEngineTorque();
-
-            //float engineTorque = engineTorqueCurve.Evaluate( LinearVelocity / maxSpeed ) * engineMaxTorque; 
             AutoGearShift();
 
             for (int i = 0; i < 2; i++)
@@ -66,16 +67,17 @@ namespace Racing
                 chassis.GetWheelAxle(i).LinearVelocity_ = LinearVelocity;
             }
 
-            if (LinearVelocity >= maxSpeed) engineTorque = 0;              
+            if (LinearVelocity >= maxSpeed) engineTorque = 0;
 
             chassis.MotorTorque = ThrottleControl * -engineTorque;
             chassis.SteerAngle = SteerControl * maxSteerAngle;
             chassis.BrakeTorque = BrakeControl * maxBrakeTorque;
             chassis.HandBrakeTorque = HandBrakeControl * maxBrakeTorque * handBrakeFactor;
 
-            
-
-            Debug.Log("LV " + (int)LinearVelocity);
+            if (speedGearEngineUI != null)
+            {
+                speedGearEngineUI.SetSpeed((int)LinearVelocity); // Showing car speed on car UI
+            }
         }
 
         private void UpdateEngineTorque()
@@ -85,6 +87,15 @@ namespace Racing
 
             engineTorque = engineTorqueCurve.Evaluate(engineRPM / engineMaxRPM) * engineMaxTorque * finalDriveRatio * Mathf.Sign(selectedGear * gears[0]);
         }
+        private void FixedUpdate()
+        {
+ /*           if (engineRpmUpdateTime >= engineRpmUpdateTimer)
+            {*/
+                speedGearEngineUI.SetEngineTorque((engineRPM - engineMinRPM) / (engineMaxRPM - engineMinRPM)); // Showing engine RPM on car UI
+                /*engineRpmUpdateTime = 0;
+            }
+            engineRpmUpdateTime += Time.fixedDeltaTime;*/
+        }
 
         //GearBox
         private void ShiftGear(int gearIndex)
@@ -93,6 +104,16 @@ namespace Racing
 
             selectedGear = gears[gearIndex];
             selectedGearIndex = gearIndex; // debugUseOnly
+
+            if (speedGearEngineUI != null)
+            {
+                if (selectedGearIndex != -1) // Showing selected gear on car UI
+                {
+                    speedGearEngineUI.SetSelectedGear(selectedGearIndex + 1);
+                    if (LinearVelocity > -5 && LinearVelocity < 5) speedGearEngineUI.SetSelectedGear(0);
+                }
+                else speedGearEngineUI.SetSelectedGear(selectedGearIndex);
+            }
         }
         public void UpGear()
         {
