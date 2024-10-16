@@ -38,6 +38,8 @@ namespace Racing
         public float LinearVelocity => chassis.LinearVelocity;
         public float WheelSpeed => chassis.GetWheelSpeed();
         public float MaxSpeed => maxSpeed;
+        public float EngineRPM => engineRPM;
+        public float EngineMaxRPM => engineMaxRPM;
 
         private CarChassis chassis;
         public CarChassis Chassis => chassis;
@@ -89,12 +91,7 @@ namespace Racing
         }
         private void FixedUpdate()
         {
- /*           if (engineRpmUpdateTime >= engineRpmUpdateTimer)
-            {*/
-                speedGearEngineUI.SetEngineTorque((engineRPM - engineMinRPM) / (engineMaxRPM - engineMinRPM)); // Showing engine RPM on car UI
-                /*engineRpmUpdateTime = 0;
-            }
-            engineRpmUpdateTime += Time.fixedDeltaTime;*/
+            speedGearEngineUI.SetEngineTorque((engineRPM - engineMinRPM) / (engineMaxRPM - engineMinRPM)); // Showing engine RPM on car UI
         }
 
         //GearBox
