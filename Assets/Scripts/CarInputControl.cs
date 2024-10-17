@@ -39,6 +39,7 @@ namespace Racing
         }
         private void UpdateThrottle()
         {
+            car.ThrottleControl = 0;
             if (Mathf.Sign(-verticalAxis) == Mathf.Sign(wheelSpeed) || Mathf.Abs(wheelSpeed) < 0.5f)
             {
                 car.ThrottleControl = Mathf.Abs(verticalAxis);
