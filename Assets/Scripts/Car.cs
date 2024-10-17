@@ -35,6 +35,7 @@ namespace Racing
         [SerializeField] private float handBrakeFactor = 1.0f;
 
         public float LinearVelocity => chassis.LinearVelocity;
+        public float NormalizedLinearVelocity => chassis.LinearVelocity / maxSpeed;
         public float WheelSpeed => chassis.GetWheelSpeed();
         public float MaxSpeed => maxSpeed;
         public float EngineRPM => engineRPM;

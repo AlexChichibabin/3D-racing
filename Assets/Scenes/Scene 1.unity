@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748171, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -128,6 +128,152 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6096637c46ec51c47881942932b69293, type: 3}
   m_PrefabInstance: {fileID: 1283254490}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &32890540
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 32890544}
+  - component: {fileID: 32890543}
+  - component: {fileID: 32890542}
+  - component: {fileID: 32890541}
+  - component: {fileID: 32890545}
+  - component: {fileID: 32890546}
+  m_Layer: 0
+  m_Name: Main Camera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &32890541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32890540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4246e6c0cf80354b8d96ce0c1c9e095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1546427090}
+  rigidbody: {fileID: 1546427089}
+  viewHeight: 2.09
+  height: 3.68
+  distance: -10.21
+  rotationDamping: 18.6
+  heightDamping: 8.15
+  speedThreshold: 5
+--- !u!81 &32890542
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32890540}
+  m_Enabled: 1
+--- !u!20 &32890543
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32890540}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_Iso: 200
+  m_ShutterSpeed: 0.005
+  m_Aperture: 16
+  m_FocusDistance: 10
+  m_FocalLength: 50
+  m_BladeCount: 5
+  m_Curvature: {x: 2, y: 11}
+  m_BarrelClipping: 0.25
+  m_Anamorphism: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 70
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!4 &32890544
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32890540}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.011870644, y: 0.98803586, z: -0.11535211, w: 0.10167673}
+  m_LocalPosition: {x: -56.57, y: 24.18, z: 16.75}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 13.318, y: 168.249, z: 0}
+--- !u!114 &32890545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32890540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aee964b2450d91845ab3a2a61ed79eb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  car: {fileID: 1546427091}
+  camera: {fileID: 32890543}
+  minFieldOfView: 55
+  maxFieldOfView: 61
+--- !u!114 &32890546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32890540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d57b556c92592ab479149a47ce4793d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  car: {fileID: 1546427091}
+  normalizedSpeedShake: 0.848
+  shakeAmount: 2.44
 --- !u!1001 &44599351
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2567,7 +2713,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b121dec071f6cb742b302fd7c0b6c029, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSteerAngle: 20
+  maxSteerAngle: 25
   maxBrakeTorque: 10000
   engineTorqueCurve:
     serializedVersion: 2
@@ -3141,7 +3287,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &1865994034
 AudioListener:
   m_ObjectHideFlags: 0
@@ -3584,3 +3730,4 @@ SceneRoots:
   - {fileID: 1618410824}
   - {fileID: 980668633}
   - {fileID: 1877346983}
+  - {fileID: 32890544}
