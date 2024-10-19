@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae3967a7de622ec4282b229cba041055, type: 3}
+  m_Name: GridBoxSounds
+  m_EditorClassIdentifier: 
+  m_Sounds:
+  - {fileID: 8300000, guid: 8e23b0733063b1c4ab367d6027cd430b, type: 3}
+  - {fileID: 8300000, guid: c932023a65398934db95f3521d8f00ba, type: 3}
+  - {fileID: 8300000, guid: af924aa249784ad40867056ef926c3f0, type: 3}

@@ -4,6 +4,7 @@ using UnityEngine;
 namespace Racing
 {
     [RequireComponent(typeof(CarChassis))]
+    //[RequireComponent(typeof(AudioSource))]
     public class Car : MonoBehaviour
     {      
         [SerializeField] private float maxSteerAngle;
@@ -30,6 +31,8 @@ namespace Racing
         [Header ("UI")]
         [SerializeField] private UISpeedGearEngine speedGearEngineUI;
 
+        /*[Header("Audio")]
+        [SerializeField]*/ private GridBoxSound gridBoxSound;
 
         [SerializeField] private float maxSpeed;
         [SerializeField] private float handBrakeFactor = 1.0f;
@@ -58,6 +61,7 @@ namespace Racing
             {
                 chassis.GetWheelAxle(i).MaxSpeed_ = maxSpeed;
             }
+            gridBoxSound = GetComponentInChildren<GridBoxSound>(); //TODO
         }
         private void Update()
         {
@@ -111,6 +115,7 @@ namespace Racing
                 }
                 else speedGearEngineUI.SetSelectedGear(selectedGearIndex);
             }
+            gridBoxSound.GridBoxSoundPlay();
         }
         public void UpGear()
         {
