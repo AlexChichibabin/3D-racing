@@ -3,10 +3,13 @@ using UnityEngine;
 
 namespace Racing
 {
-    public class RaceInputController : MonoBehaviour
+    public class RaceInputController : MonoBehaviour, IDependency<CarInputControl>, IDependency<RaceStateTracker>
+
     {
-        [SerializeField] private CarInputControl carControl;
-        [SerializeField] private RaceStateTracker raceStateTracker;
+        private CarInputControl carControl;
+        private RaceStateTracker raceStateTracker;
+        public void Construct(CarInputControl obj) => carControl = obj;
+        public void Construct(RaceStateTracker obj) => raceStateTracker = obj;
 
         private void Start()
         {
@@ -30,6 +33,5 @@ namespace Racing
             carControl.Stop();
             carControl.enabled = false;
         }
-
     }
 }

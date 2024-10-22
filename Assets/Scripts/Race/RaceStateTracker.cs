@@ -12,7 +12,7 @@ namespace Racing
         Passed
     }
 
-    public class RaceStateTracker : MonoBehaviour
+    public class RaceStateTracker : MonoBehaviour, IDependency<TrackpointCircuit>
     {
         public event UnityAction PreparationStarted;
         public event UnityAction Started;
@@ -20,9 +20,11 @@ namespace Racing
         public event UnityAction<TrackPoint> TrackPointPassed;
         public event UnityAction<int> LapCompleted;
 
-        [SerializeField] private TrackpointCircuit trackpointCircuit;
+        private TrackpointCircuit trackpointCircuit;
+        public void Construct(TrackpointCircuit obj) => trackpointCircuit = obj;
         [SerializeField] private int lapToComplete;
         [SerializeField] private Timer countDownTimer;
+        public Timer CountDownTimer => countDownTimer;
 
         private RaceState state;
         public RaceState State => state;

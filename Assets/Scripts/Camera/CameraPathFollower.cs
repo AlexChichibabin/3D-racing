@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Racing
 {
-    public class CameraPathFollower : MonoBehaviour
+    public class CameraPathFollower : CarCameraComponent
     {
         [SerializeField] private Transform path;
         [SerializeField] private Transform lookTarget;

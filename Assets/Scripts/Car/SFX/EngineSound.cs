@@ -3,10 +3,8 @@ using UnityEngine;
 namespace Racing
 {
     [RequireComponent(typeof(AudioSource))]
-    public class EngineSound : MonoBehaviour
+    public class EngineSound : MonoBehaviour, IDependency<Car>
     {
-        [SerializeField] private Car car;
-
         [SerializeField] private float pitchModifier;
         [SerializeField] private float volumeModifier;
         [SerializeField] private float rpmModifier;
@@ -14,6 +12,8 @@ namespace Racing
         [SerializeField] private float basePitch = 1.0f;
         [SerializeField] private float baseVolume = 0.4f;
 
+        private Car car;
+        public void Construct(Car obj) => car = obj;
 
         private AudioSource engineAudioSource;
 

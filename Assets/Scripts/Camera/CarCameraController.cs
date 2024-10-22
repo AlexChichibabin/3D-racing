@@ -1,22 +1,55 @@
+using System;
 using UnityEngine;
 
 namespace Racing
 {
-    public class CarCameraController : MonoBehaviour
+    public class CarCameraController : MonoBehaviour, IDependency<Car>, IDependency<RaceStateTracker>
     {
-        [SerializeField] private Car car;
         [SerializeField] new private Camera camera;
-        [SerializeField] private CarCameraShaker cameraShaker;
-        [SerializeField] private CarCameraFovCorrector cameraFovCorrector;
-        [SerializeField] private CarCameraFollower cameraFollower;
-        [SerializeField] private CarCameraPostProcessing cameraPostProcessing;
+        [SerializeField] private CarCameraShaker shaker;
+        [SerializeField] private CarCameraFovCorrector fovCorrector;
+        [SerializeField] private CarCameraFollower follower;
+        [SerializeField] private CarCameraPostProcessing postProcessing;
+        [SerializeField] private CameraPathFollower pathFollower;
+
+        private Car car;
+        private RaceStateTracker raceStateTracker;
+        public void Construct(Car obj) => car = obj;
+        public void Construct(RaceStateTracker obj) => raceStateTracker = obj;
 
         private void Awake()
         {
-            cameraShaker.SetProperties(car, camera);
-            cameraFovCorrector.SetProperties(car, camera);
-            cameraFollower.SetProperties(car, camera);
-            cameraPostProcessing.SetProperties(car, camera);
+            shaker.SetProperties(car, camera);
+            fovCorrector.SetProperties(car, camera);
+            follower.SetProperties(car, camera);
+            postProcessing.SetProperties(car, camera);
+            pathFollower.SetProperties(car, camera);
+        }
+        private void Start()
+        {
+            raceStateTracker.PreparationStarted += OnPreparationStarted;
+            raceStateTracker.Completed += OnCompleted;
+
+            follower.enabled = false;
+            pathFollower.enabled = true;
+        }
+        private void OnDestroy()
+        {
+            raceStateTracker.PreparationStarted -= OnPreparationStarted;
+            raceStateTracker.Completed -= OnCompleted;
+        }
+        private void OnPreparationStarted()
+        {
+            follower.enabled = true;
+            pathFollower.enabled = false;
+        }
+        private void OnCompleted()
+        {
+            pathFollower.enabled = true;
+            pathFollower.StartMoveToNearesPoint();
+            pathFollower.SetLookTarget(car.transform);
+
+            follower.enabled = false;
         }
     }
 }

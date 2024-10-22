@@ -2,13 +2,14 @@ using UnityEngine;
 
 namespace Racing
 {
-    public class CarInputControl : MonoBehaviour
+    public class CarInputControl : MonoBehaviour, IDependency<Car>
     {
-        [SerializeField] private Car car;
         [SerializeField] private AnimationCurve brakeCurve;
         [SerializeField] private AnimationCurve steerCurve;
         [SerializeField][Range(0.0f, 1.0f)] private float autoBrakeStrength = 0.5f;
 
+        private Car car;
+        public void Construct(Car obj) => car = obj;
 
         private float wheelSpeed;
         private float verticalAxis;

@@ -1,15 +1,15 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Racing
 {
-    public class UICountDownTimer : MonoBehaviour
+    public class UICountDownTimer : MonoBehaviour, IDependency<RaceStateTracker>
     {
-        [SerializeField] private RaceStateTracker raceStateTracker;
-
         [SerializeField] private Text text;
         [SerializeField] private Timer timer;
+
+        private RaceStateTracker raceStateTracker;
+        public void Construct(RaceStateTracker obj) => raceStateTracker = obj;
 
         private void Start()
         {

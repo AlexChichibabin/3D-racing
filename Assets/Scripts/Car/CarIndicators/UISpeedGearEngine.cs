@@ -9,20 +9,8 @@ namespace Racing
         [SerializeField] private Text m_SelectedGearText;
         [SerializeField] private Image m_EngineTorqueImage;
 
-        private float engineRpmUpdateTime;
-        [SerializeField] private float engineRpmUpdateTimer;
-
-
-        private void Start()
-        {
-
-        }
-
-
-        private void Update()
-        {
-
-        }
+        //private float engineRpmUpdateTime;
+        //[SerializeField] private float engineRpmUpdateTimer;
 
         public void SetSpeed(int speed)
         {

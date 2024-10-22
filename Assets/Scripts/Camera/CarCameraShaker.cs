@@ -8,7 +8,7 @@ namespace Racing
         [SerializeField] private float shakeAmount;
         private void Update()
         {
-            if(car.NormalizedLinearVelocity >= normalizedSpeedShake)
+            if (car.NormalizedLinearVelocity >= normalizedSpeedShake)
                 transform.localPosition += Random.insideUnitSphere * shakeAmount * Time.deltaTime;
         }
     }

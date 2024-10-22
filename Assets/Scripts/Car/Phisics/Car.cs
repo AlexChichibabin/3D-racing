@@ -1,10 +1,9 @@
 using UnityEngine;
-//using UnityEngine.Events;
 
 namespace Racing
 {
     [RequireComponent(typeof(CarChassis))]
-    //[RequireComponent(typeof(AudioSource))]
+
     public class Car : MonoBehaviour
     {      
         [SerializeField] private float maxSteerAngle;
@@ -31,8 +30,8 @@ namespace Racing
         [Header ("UI")]
         [SerializeField] private UISpeedGearEngine speedGearEngineUI;
 
-        /*[Header("Audio")]
-        [SerializeField]*/ private GridBoxSound gridBoxSound;
+
+        private GridBoxSound gridBoxSound;
 
         [SerializeField] private float maxSpeed;
         [SerializeField] private float handBrakeFactor = 1.0f;
