@@ -74,7 +74,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Glossiness: 0.5
+    - _Glossiness: 0.935
+    - _Metallic: 0.948
     m_Colors:
     - _EmissionColor: {r: 4.075472, g: 2.6661832, b: 0.6305444, a: 1}
   m_BuildTextureStacks: []

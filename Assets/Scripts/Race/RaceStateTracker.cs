@@ -14,7 +14,7 @@ namespace Racing
 
     public class RaceStateTracker : MonoBehaviour
     {
-        public event UnityAction PreparatiionStarted;
+        public event UnityAction PreparationStarted;
         public event UnityAction Started;
         public event UnityAction Completed;
         public event UnityAction<TrackPoint> TrackPointPassed;
@@ -22,6 +22,7 @@ namespace Racing
 
         [SerializeField] private TrackpointCircuit trackpointCircuit;
         [SerializeField] private int lapToComplete;
+        [SerializeField] private Timer countDownTimer;
 
         private RaceState state;
         public RaceState State => state;
@@ -30,11 +31,16 @@ namespace Racing
         {
             StartState(RaceState.Preparation);
 
+            countDownTimer.enabled = false;
+            countDownTimer.Finished += OnCountDownFinished;
+
             trackpointCircuit.TrackPointTriggered += OnTrackPointTriggered;
             trackpointCircuit.LapCompleted += OnLapCompleted;
         }
         private void OnDestroy()
         {
+            countDownTimer.Finished -= OnCountDownFinished;
+
             trackpointCircuit.TrackPointTriggered -= OnTrackPointTriggered;
             trackpointCircuit.LapCompleted += OnLapCompleted;
         }
@@ -61,7 +67,11 @@ namespace Racing
         public void LaunchPreparationStart()
         {
             if (state != RaceState.Preparation) return;
-            PreparatiionStarted?.Invoke();
+            StartState(RaceState.CountDown);
+
+            countDownTimer.enabled = true;
+
+            PreparationStarted?.Invoke();
         }
         private void StartRace()
         {
@@ -78,6 +88,10 @@ namespace Racing
         private void CompleteLap(int lapAmount)
         {
             LapCompleted?.Invoke(lapAmount);
+        }
+        private void OnCountDownFinished()
+        {
+            StartRace();
         }
     }
 }

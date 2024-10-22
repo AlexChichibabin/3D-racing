@@ -12,9 +12,7 @@ namespace Racing
 
         [SerializeField] private Transform centerOfMass;
         private Rigidbody rigidBody;
-
-        
-
+        public Rigidbody RigidBody => rigidBody == null? GetComponent<Rigidbody>() : rigidBody;
         public float LinearVelocity => rigidBody.velocity.magnitude * 3.6f;
 
         [Header("Down Force")]

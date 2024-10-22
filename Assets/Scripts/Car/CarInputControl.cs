@@ -70,5 +70,15 @@ namespace Racing
             horizontalAxis = Input.GetAxis("Horizontal");
             handBrakeAxis = Input.GetAxis("Jump");
         }
+        public void Stop()
+        {
+            verticalAxis = 0;
+            horizontalAxis = 0;
+            handBrakeAxis = 0;
+
+            car.ThrottleControl = 0;
+            car.SteerControl = 0;
+            car.BrakeControl = 1;
+        }
     }
 }

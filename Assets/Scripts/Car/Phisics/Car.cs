@@ -46,6 +46,8 @@ namespace Racing
 
         private CarChassis chassis;
         public CarChassis Chassis => chassis;
+        public Rigidbody RigidBody => Chassis == null ? 
+            GetComponent<CarChassis>().RigidBody : chassis.RigidBody;
 
         //DEBUG
         public float ThrottleControl;
