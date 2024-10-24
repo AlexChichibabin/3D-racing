@@ -26,17 +26,16 @@ namespace Racing
         private void Awake()
         {
             BuildCircuit();
-        }
-        private void Start()
-        {
             for (int i = 0; i < points.Length; i++)
             {
                 points[i].Triggered += OnTrackPointTriggered;
             }
             points[0].AssignAsTarget();
         }
-
-        
+        private void Start()
+        {
+            
+        }   
 
         private void OnDestroy()
         {

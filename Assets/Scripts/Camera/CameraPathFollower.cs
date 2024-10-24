@@ -20,6 +20,7 @@ namespace Racing
             {
                 points[i] = path.GetChild(i).position;
             }
+            transform.position = points[0];
         }
         private void Update()
         {

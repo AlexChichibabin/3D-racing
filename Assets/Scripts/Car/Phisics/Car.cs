@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Racing
@@ -143,6 +144,26 @@ namespace Racing
             if (engineRPM > upShiftEngineRPM) UpGear();
             if (engineRPM < downShiftEngineRPM) DownGear();
         }
-        
+        public void Respawn(Vector3 position, Quaternion rotation)
+        {
+            Reset();
+
+            transform.position = position;
+            transform.rotation = rotation;
+        }
+
+        public void Reset()
+        {
+            chassis.Reset();
+
+            chassis.MotorTorque = 0;
+            chassis.BrakeTorque = 0;
+            chassis.SteerAngle = 0;
+
+            ThrottleControl = 0;
+            SteerControl = 0;
+            BrakeControl = 0;
+            HandBrakeControl = 0;
+        }
     }
 }

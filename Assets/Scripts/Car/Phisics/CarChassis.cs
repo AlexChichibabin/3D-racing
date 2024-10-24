@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Racing
@@ -103,6 +104,12 @@ namespace Racing
                 WheelAxles[1].ApplyBrakeTorque(HandBrakeTorque);
                 WheelAxles[i].UpdateAntiRoll();
             }
+        }
+
+        public void Reset()
+        {
+            rigidBody.velocity = Vector3.zero;
+            rigidBody.angularVelocity = Vector3.zero;
         }
     }
 }

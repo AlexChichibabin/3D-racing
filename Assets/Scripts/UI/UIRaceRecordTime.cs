@@ -34,7 +34,7 @@ namespace Racing
             if (resultTime.PlayerRecordTime > resultTime.GoldTime || resultTime.RecordWasSet == false)
             {
                 goldRecordObject.SetActive(true);
-                goldRecordTime.text = StringTime.SecondToTimeString(resultTime.PlayerRecordTime);
+                goldRecordTime.text = StringTime.SecondToTimeString(resultTime.GoldTime);
             }
             if (resultTime.RecordWasSet == true)
             {
