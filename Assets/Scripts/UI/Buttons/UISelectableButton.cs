@@ -12,6 +12,10 @@ namespace Racing
         public UnityEvent OnSelect;
         public UnityEvent OnUnselect;
 
+        private void Start()
+        {
+            selectedImage.enabled = false;
+        }
         public override void SetFocus()
         {
             base.SetFocus();
