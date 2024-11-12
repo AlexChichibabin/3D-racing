@@ -29,21 +29,21 @@ namespace Racing
             focused = false;
         }
 
-        public void OnPointerEnter(PointerEventData eventData)
+        public virtual void OnPointerEnter(PointerEventData eventData)
         {
             if (Interactable == false) return;
 
             PointerEnter?.Invoke(this);
         }
 
-        public void OnPointerExit(PointerEventData eventData)
+        public virtual void OnPointerExit(PointerEventData eventData)
         {
             if (Interactable == false) return;
 
             PointerExit?.Invoke(this);
         }
 
-        public void OnPointerClick(PointerEventData eventData)
+        public virtual void OnPointerClick(PointerEventData eventData)
         {
             if (Interactable == false) return;
 

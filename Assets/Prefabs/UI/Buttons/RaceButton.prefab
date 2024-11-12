@@ -421,7 +421,7 @@ GameObject:
   - component: {fileID: 4280366946361494753}
   - component: {fileID: 1888757921064154685}
   - component: {fileID: 7473222286502844408}
-  - component: {fileID: 7457986527750575310}
+  - component: {fileID: 3505532025560995127}
   m_Layer: 0
   m_Name: RaceButton
   m_TagString: Untagged
@@ -481,7 +481,7 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
---- !u!114 &7457986527750575310
+--- !u!114 &3505532025560995127
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -490,7 +490,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7775597410716252683}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09c0e49bdf6a9904e8d54c9d1f77f11e, type: 3}
+  m_Script: {fileID: 11500000, guid: 29551237e22a89c498c1cc41fc60d286, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Interactable: 1
@@ -504,6 +504,9 @@ MonoBehaviour:
   OnUnselect:
     m_PersistentCalls:
       m_Calls: []
+  raceInfo: {fileID: 11400000, guid: 5a66f1ae6ec40dc4881d55bd3e2de33e, type: 2}
+  icon: {fileID: 6828071913890127536}
+  title: {fileID: 3473831187049522116}
 --- !u!1 &8901739969877723778
 GameObject:
   m_ObjectHideFlags: 0
