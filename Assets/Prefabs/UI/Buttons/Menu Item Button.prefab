@@ -327,7 +327,8 @@ MonoBehaviour:
   OnClick:
     m_PersistentCalls:
       m_Calls: []
-  selectedImage: {fileID: 342809063682113724}
+  selectedImage:
+  - {fileID: 342809063682113724}
   OnSelect:
     m_PersistentCalls:
       m_Calls: []

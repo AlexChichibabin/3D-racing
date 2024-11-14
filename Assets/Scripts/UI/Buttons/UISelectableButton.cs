@@ -7,27 +7,36 @@ namespace Racing
 {
     public class UISelectableButton : UIButton
     {
-        [SerializeField] private Image selectedImage;
+        [SerializeField] private Image[] selectedImage;
 
         public UnityEvent OnSelect;
         public UnityEvent OnUnselect;
 
         private void Start()
         {
-            selectedImage.enabled = false;
+            for(int i = 0; i < selectedImage.Length; i++)
+            {
+                selectedImage[i].enabled = false;
+            }
         }
         public override void SetFocus()
         {
             base.SetFocus();
 
-            selectedImage.enabled = true;
+            for (int i = 0; i < selectedImage.Length; i++)
+            {
+                selectedImage[i].enabled = true;
+            }
             OnSelect?.Invoke();
         }
         public override void SetUnfocus()
         {
             base.SetUnfocus();
 
-            selectedImage.enabled = false;
+            for (int i = 0; i < selectedImage.Length; i++)
+            {
+                selectedImage[i].enabled = false;
+            }
             OnUnselect?.Invoke();
         }
     }

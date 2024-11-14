@@ -1,5 +1,24 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!243 &-3913946794581860032
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: UI
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: edeffbcc8cd3c814d8430559731ca099
+  m_Children: []
+  m_Volume: 820d6c4848376284899a963dd77d995d
+  m_Pitch: bf847a889be492d40b0472c97496e185
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: 610329684615394593}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!244 &-1822474279991037533
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -63,6 +82,7 @@ AudioMixerController:
     - 7ac18b18b71856c4c885afac7dd08797
     - d7e181b8be5da7e4f9010bf993712e18
     - 6306941ae2b9d9642b301c3acb0524b2
+    - edeffbcc8cd3c814d8430559731ca099
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -118,12 +138,27 @@ AudioMixerSnapshotController:
     47e9811658a6fe0408e1f0babbd3ab6f: 0.048
     c25c0d56eaf601749bef6e301a02b472: -5542
     f728fa07b81daf7429f6ae7f3ab6fa92: -33
+    820d6c4848376284899a963dd77d995d: -14.816608
     354284c89a842a64b9e59545220e9de8: 393
     86446509593aafe43bdf9d59facc890b: 0.487
     a1f42e79380239744a26f2cf8977d46f: 4.72
     747e83ccfeede4a4a857c07e13795950: 98.3
     15192dae47d656045b919f28e05f4219: -14.816617
   m_TransitionOverrides: {}
+--- !u!244 &610329684615394593
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: e293c1f901b613140b19e194f704ccec
+  m_EffectName: Attenuation
+  m_MixLevel: 82920d305f89621459ec9282c084e68d
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!244 &2053291225236495092
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -166,7 +201,8 @@ AudioMixerGroupController:
   m_Name: SFX
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: d7e181b8be5da7e4f9010bf993712e18
-  m_Children: []
+  m_Children:
+  - {fileID: -3913946794581860032}
   m_Volume: 645a2aa6d90a7914bbbfafcffbb55783
   m_Pitch: 14f80a296d20fb242b78677b7204b7ca
   m_Send: 00000000000000000000000000000000

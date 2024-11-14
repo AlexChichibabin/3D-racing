@@ -286,7 +286,7 @@ MonoBehaviour:
   OnClick:
     m_PersistentCalls:
       m_Calls: []
-  selectedImage: {fileID: 8430695269978080308}
+  selectedImage: []
   OnSelect:
     m_PersistentCalls:
       m_Calls: []
@@ -304,6 +304,7 @@ GameObject:
   - component: {fileID: 7159520354131397850}
   - component: {fileID: 4997459787773748926}
   - component: {fileID: 4298169909362485744}
+  - component: {fileID: 6495110880354016011}
   m_Layer: 0
   m_Name: SettingButton
   m_TagString: Untagged
@@ -360,6 +361,36 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &6495110880354016011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275461651797316244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd9aa3f4613fc9b40867a981dc7f5f65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Interactable: 1
+  OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+  selectedImage:
+  - {fileID: 2036340909080453061}
+  - {fileID: 8430695269978080308}
+  OnSelect:
+    m_PersistentCalls:
+      m_Calls: []
+  OnUnselect:
+    m_PersistentCalls:
+      m_Calls: []
+  setting: {fileID: 0}
+  titleText: {fileID: 828781420775228130}
+  valueText: {fileID: 1514397017974012729}
+  previousImage: {fileID: 1284925834389415107}
+  nextImage: {fileID: 3906584211379909417}
 --- !u!1 &1603537836065162506
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,7 +447,7 @@ MonoBehaviour:
   OnClick:
     m_PersistentCalls:
       m_Calls: []
-  selectedImage: {fileID: 2036340909080453061}
+  selectedImage: []
   OnSelect:
     m_PersistentCalls:
       m_Calls: []
