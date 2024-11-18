@@ -11,20 +11,37 @@ namespace Racing
         [SerializeField] private Image previousImage;
         [SerializeField] private Image nextImage;
 
-        public void SetNextValueSetting() => setting?.SetNextValue();
-        public void SetPreviousValueSetting() => setting?.SetPreviousValue();
-
-        public void ApplyProperty(Setting setting)
+        private void Start()
         {
-            if (setting == null) return;
-
-            this.setting = setting;
-
+            ApplyProperty(setting);
+        }
+        public void SetNextValueSetting()
+        {
+            setting?.SetNextValue();
+            setting?.Apply();
+            UpdateInfo();
+        }
+        public void SetPreviousValueSetting()
+        {
+            setting?.SetPreviousValue();
+            setting?.Apply();
+            UpdateInfo();
+        }
+        private void UpdateInfo()
+        {
             titleText.text = setting.Title;
             valueText.text = setting.GetStringValue();
 
             previousImage.enabled = !setting.isMinValue;
             nextImage.enabled = !setting.isMaxValue;
+        }
+        public void ApplyProperty(Setting property)
+        {
+            if (property == null) return;
+
+            setting = property;
+
+            UpdateInfo();
         }
     }
 }

@@ -502,6 +502,7 @@ GameObject:
   - component: {fileID: 754495571783895753}
   - component: {fileID: 6354192793317792341}
   - component: {fileID: 3906584211379909417}
+  - component: {fileID: 2186511214290594898}
   m_Layer: 0
   m_Name: ArrowMore
   m_TagString: Untagged
@@ -566,6 +567,34 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2186511214290594898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4575494108160952847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8a242bb80baaff4fb8d1661ce0913b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Interactable: 1
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6495110880354016011}
+        m_TargetAssemblyTypeName: Racing.UISettingButton, Assembly-CSharp
+        m_MethodName: SetNextValueSetting
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4716427432435759307
 GameObject:
   m_ObjectHideFlags: 0
@@ -806,6 +835,7 @@ GameObject:
   - component: {fileID: 3684823422695125903}
   - component: {fileID: 2770017275672473871}
   - component: {fileID: 1284925834389415107}
+  - component: {fileID: 7002779438045713124}
   m_Layer: 0
   m_Name: ArrowLess
   m_TagString: Untagged
@@ -870,6 +900,34 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7002779438045713124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7444452168449614643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8a242bb80baaff4fb8d1661ce0913b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Interactable: 1
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6495110880354016011}
+        m_TargetAssemblyTypeName: Racing.UISettingButton, Assembly-CSharp
+        m_MethodName: SetPreviousValueSetting
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8321950392990386641
 GameObject:
   m_ObjectHideFlags: 0
