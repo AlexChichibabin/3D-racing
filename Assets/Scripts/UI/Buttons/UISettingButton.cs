@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace Racing
 {
-    public class UISettingButton : UISelectableButton
+    public class UISettingButton : UISelectableButton, IScriptableObjectProperty
     {
         [SerializeField] private Setting setting;
         [SerializeField] private Text titleText;
@@ -35,11 +35,13 @@ namespace Racing
             previousImage.enabled = !setting.isMinValue;
             nextImage.enabled = !setting.isMaxValue;
         }
-        public void ApplyProperty(Setting property)
+
+        public void ApplyProperty(ScriptableObject property)
         {
             if (property == null) return;
 
-            setting = property;
+            if (property is Setting == false) return;
+            setting = property as Setting;
 
             UpdateInfo();
         }

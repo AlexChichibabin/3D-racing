@@ -44,6 +44,16 @@ namespace Racing
         {
             Screen.SetResolution(availableResolutions[currentResolutionIndex].x,
                                  availableResolutions[currentResolutionIndex].y, true);
+
+            Save();
+        }
+        public override void Load()
+        {
+            currentResolutionIndex = PlayerPrefs.GetInt(title, 0);
+        }
+        private void Save()
+        {
+            PlayerPrefs.SetInt(title, currentResolutionIndex);
         }
     }
 }
