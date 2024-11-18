@@ -25,11 +25,11 @@ namespace Racing
         }
         public override void SetPreviousValue()
         {
-            AddValue(Mathf.Abs((maxRealValue - minRealValue) / virtualStep));
+            AddValue(-Mathf.Abs((maxRealValue - minRealValue) / virtualStep));
         }
         public override object GetValue()
         {
-            return base.GetValue();
+            return currentValue;
         }
         public override string GetStringValue()
         {

@@ -1,0 +1,49 @@
+using UnityEngine;
+
+namespace Racing
+{
+    [CreateAssetMenu]
+    public class ResolutionSetting : Setting
+    {
+        [SerializeField]
+        private Vector2Int[] availableResolutions = new Vector2Int[]
+        {
+            new Vector2Int(800, 600),
+            new Vector2Int(1200, 720),
+            new Vector2Int(1600, 900),
+            new Vector2Int(1920, 1080)
+        };
+        private int currentResolutionIndex = 0;
+
+        public override bool isMinValue => currentResolutionIndex == 0;
+        public override bool isMaxValue => currentResolutionIndex == availableResolutions.Length - 1;
+        public override void SetNextValue()
+        {
+            if (isMaxValue == false)
+            {
+                currentResolutionIndex++;
+            }
+        }
+        public override void SetPreviousValue()
+        {
+            if (isMinValue == false)
+            {
+                currentResolutionIndex--;
+            }
+        }
+        public override object GetValue()
+        {
+            return availableResolutions[currentResolutionIndex];
+        }
+        public override string GetStringValue()
+        {
+            return availableResolutions[currentResolutionIndex].x + "x" + 
+                availableResolutions[currentResolutionIndex].y;
+        }
+        public override void Apply()
+        {
+            Screen.SetResolution(availableResolutions[currentResolutionIndex].x,
+                                 availableResolutions[currentResolutionIndex].y, true);
+        }
+    }
+}
