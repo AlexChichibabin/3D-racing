@@ -1299,6 +1299,7 @@ GameObject:
   - component: {fileID: 811126928924962142}
   - component: {fileID: 6385281977897371532}
   - component: {fileID: 6132938228519156915}
+  - component: {fileID: 4512126858206010850}
   m_Layer: 0
   m_Name: WindSound
   m_TagString: Untagged
@@ -1433,6 +1434,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4512126858206010850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5169493792236056631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d38a5dcdaa25c2f479cd12e70fa3b2a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5632837450925097803
 GameObject:
   m_ObjectHideFlags: 0
@@ -1654,6 +1667,7 @@ GameObject:
   - component: {fileID: 5625011071893028209}
   - component: {fileID: 4703424370762793565}
   - component: {fileID: 5839763898022630454}
+  - component: {fileID: 1692879318943436835}
   m_Layer: 0
   m_Name: GridBoxSound
   m_TagString: Untagged
@@ -1784,6 +1798,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1692879318943436835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6610968283534326271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d38a5dcdaa25c2f479cd12e70fa3b2a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6626199046452204787
 GameObject:
   m_ObjectHideFlags: 0
@@ -1795,6 +1821,7 @@ GameObject:
   - component: {fileID: 6136558547856201986}
   - component: {fileID: 8661696389630370368}
   - component: {fileID: 1657164912808490593}
+  - component: {fileID: 268257501211188098}
   m_Layer: 0
   m_Name: WheelEffects
   m_TagString: Untagged
@@ -1944,6 +1971,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &268257501211188098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6626199046452204787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d38a5dcdaa25c2f479cd12e70fa3b2a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7268731961698116823
 GameObject:
   m_ObjectHideFlags: 0
@@ -1955,6 +1994,7 @@ GameObject:
   - component: {fileID: 2966794156305975109}
   - component: {fileID: 4225272735764311956}
   - component: {fileID: 1863787021913023067}
+  - component: {fileID: 7145819642534403197}
   m_Layer: 0
   m_Name: EngineSound
   m_TagString: Untagged
@@ -2090,6 +2130,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7145819642534403197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7268731961698116823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d38a5dcdaa25c2f479cd12e70fa3b2a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8229197224552327662
 GameObject:
   m_ObjectHideFlags: 0

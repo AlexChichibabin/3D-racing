@@ -139,4 +139,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7c1d0f19c2a41f40b66476d42568968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauser: {fileID: 0}
+  pauser: {fileID: 8441484211803490835}

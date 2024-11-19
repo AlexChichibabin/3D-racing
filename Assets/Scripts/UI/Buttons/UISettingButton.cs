@@ -13,6 +13,7 @@ namespace Racing
 
         private void Start()
         {
+            HideStartSelection();
             ApplyProperty(setting);
         }
         public void SetNextValueSetting()

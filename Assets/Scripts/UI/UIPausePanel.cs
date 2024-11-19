@@ -12,11 +12,11 @@ namespace Racing
         private void Start()
         {
             pausePanel.SetActive(false);
-            pauser.pauseStateChange += OnPauseStateChange;
+            pauser.PauseStateChange += OnPauseStateChange;
         }
         private void OnDestroy()
         {
-            pauser.pauseStateChange -= OnPauseStateChange;
+            pauser.PauseStateChange -= OnPauseStateChange;
         }
         private void OnPauseStateChange(bool isPause)
         {
@@ -28,6 +28,10 @@ namespace Racing
             {
                 pauser.ChangePauseState();
             }
+        }
+        public void UnPause()
+        {
+            pauser.UnPause();
         }
     }
 }

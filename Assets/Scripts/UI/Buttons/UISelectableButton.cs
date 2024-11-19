@@ -7,14 +7,18 @@ namespace Racing
 {
     public class UISelectableButton : UIButton
     {
-        [SerializeField] private Image[] selectedImage;
+        [SerializeField] protected Image[] selectedImage;
 
         public UnityEvent OnSelect;
         public UnityEvent OnUnselect;
 
         private void Start()
         {
-            for(int i = 0; i < selectedImage.Length; i++)
+            HideStartSelection();
+        }
+        protected void HideStartSelection()
+        {
+            for (int i = 0; i < selectedImage.Length; i++)
             {
                 selectedImage[i].enabled = false;
             }
