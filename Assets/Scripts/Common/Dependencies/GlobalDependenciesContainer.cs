@@ -8,7 +8,9 @@ namespace Racing
     {
         private static GlobalDependenciesContainer instance;
         [SerializeField] private Pauser pauser;
-
+        [SerializeField] private MapCompletion mapCompletion;
+        [SerializeField] private LevelSequenceController levelSequenceController;
+        
         private void Awake()
         {
             if (instance != null)
@@ -30,6 +32,7 @@ namespace Racing
         protected override void BindAll(MonoBehaviour monoBehaviourInScene)
         {
             Bind<Pauser>(pauser, monoBehaviourInScene);
+            Bind<MapCompletion>(mapCompletion, monoBehaviourInScene);
         }
         private void OnLoadScene(Scene arg0, LoadSceneMode arg1)
         {

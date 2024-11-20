@@ -1,94 +1,58 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace SpaceShip
+public class LevelSequenceController : MonoBehaviour
 {
-    public class LevelSequenceController : SingletonBase<LevelSequenceController>
+    public static string MainMenuSceneNickname = "MainMenu";
+    public static string MapSceneNickname = "LevelMap";
+
+    public Episode CurrentRace { get; private set; }
+
+    public int CurrentLevel { get; private set; }
+
+    public bool LastLevelResult { get; private set; }
+
+    public void StartEpisode(Episode episode)
     {
-        public static string MainMenuSceneNickname = "MainMenu";
-        public static string MapSceneNickname = "LevelMap";
+        CurrentRace = episode;
+        CurrentLevel = 0;
 
-        public Episode CurrentEpisode { get; private set; }
+        if (CurrentRace.Levels.Length > 0 && CurrentRace.Levels[CurrentLevel] != null)
 
-        public int CurrentLevel { get; private set; }
+            SceneManager.LoadScene(episode.Levels[CurrentLevel]);
+    }
 
-        public bool LastLevelResult { get; private set; }
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(CurrentRace.Levels[CurrentLevel]);
+    }
 
-        public static Ship PlayerShip { get; set; }
+    public void FinishCurrentLevel(bool success)
+    {
+        LastLevelResult = success;
 
-        public PlayerStatistics LevelStatistics { get; private set; }
+        //ResultPanelController.Instance.ShowResults(LevelStatistics, success);
 
-        public TotalStatistics MainStatistics { get; private set; }
+    }
 
-        public void StartEpisode(Episode episode)
+    public void AdvanceLevel()
+    {
+        if (CurrentRace)
         {
-            CurrentEpisode = episode;
-            CurrentLevel = 0;
+            CurrentLevel++;
 
-            //сбрасываем статы перед началом эпизода
-            /*LevelStatistics = PlayerStatistics.Instance;
-            LevelStatistics.Reset();
-            MainStatistics = TotalStatistics.Instance;*/
-
-            if (CurrentEpisode.Levels.Length > 0 && CurrentEpisode.Levels[CurrentLevel] != null)
-
-                SceneManager.LoadScene(episode.Levels[CurrentLevel]);
-        }
-
-        public void RestartLevel()
-        {
-            //SceneManager.LoadScene(CurrentEpisode.Levels[CurrentLevel]);
-            SceneManager.LoadScene(CurrentEpisode.Levels[CurrentLevel]);
-        }
-
-        public void FinishCurrentLevel(bool success)
-        {
-            LastLevelResult = success;
-            //CalculateLevelStatistic();
-            //CalculateMainStatistic();
-            //MainStatistics.SaveMainStatistic();
-            //PlayerPrefs.Save();
-
-            ResultPanelController.Instance.ShowResults(LevelStatistics, success);
-            //print(LastLevelResult);
-        }
-
-        public void AdvanceLevel()
-        {
-            //LevelStatistics.Reset();
-            if (CurrentEpisode)
+            if (CurrentRace.Levels.Length <= CurrentLevel)
             {
-                CurrentLevel++;
-
-                if (CurrentEpisode.Levels.Length <= CurrentLevel)
-                {
-                    SceneManager.LoadScene(MapSceneNickname);
-                }
-                else
-                {
-                    SceneManager.LoadScene(CurrentEpisode.Levels[CurrentLevel]);
-                }
+                SceneManager.LoadScene(MapSceneNickname);
             }
             else
             {
-                SceneManager.LoadScene(MapSceneNickname);
-            }        
+                SceneManager.LoadScene(CurrentRace.Levels[CurrentLevel]);
+            }
         }
-
-        /*private void CalculateLevelStatistic()
+        else
         {
-            LevelStatistics.NumKills = Player.Instance.NumKills;
-            LevelStatistics.Scores = Player.Instance.Score;
-            LevelStatistics.Time = (int)LevelController.Instance.LevelTime;
+            SceneManager.LoadScene(MapSceneNickname);
         }
-        private void CalculateMainStatistic()
-        {
-            MainStatistics.TotalNumKills += Player.Instance.NumKills;
-            MainStatistics.TotalScores += Player.Instance.Score;
-            MainStatistics.TotalTime += (int)LevelController.Instance.LevelTime;
-        }*/
-
     }
 }

@@ -7,7 +7,7 @@ namespace SpaceShip
     {
         bool IsCompleted { get; }
     }
-    public class LevelController : SingletonBase<LevelController>
+    public class LevelController : SingletonBase<LevelController>, IDependency<LevelSequenceController>
     {
         [SerializeField] protected float m_ReferenceTime;
         public float ReferenceTime => m_ReferenceTime;
@@ -15,7 +15,8 @@ namespace SpaceShip
         [SerializeField] protected UnityEvent m_EventLevelCompleted;
 
         private ILevelCondition[] m_Conditions;
-
+        private LevelSequenceController levelSequenceController;
+        public void Construct(LevelSequenceController obj) => levelSequenceController = obj;
         private bool m_IsLevelCompleted;
 
         private float m_LevelTime;
@@ -53,7 +54,7 @@ namespace SpaceShip
                 m_IsLevelCompleted = true;
                 m_EventLevelCompleted?.Invoke();
 
-                LevelSequenceController.Instance?.FinishCurrentLevel(true);
+                levelSequenceController?.FinishCurrentLevel(true);
             }
         }
     }

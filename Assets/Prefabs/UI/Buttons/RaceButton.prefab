@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6233363, g: 0.8018868, b: 0.5484603, a: 1}
+  m_Color: {r: 0.3143189, g: 0.41509432, b: 0.2717693, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -209,7 +209,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6233363, g: 0.8018868, b: 0.5484603, a: 1}
+  m_Color: {r: 0.7924528, g: 0.7183601, b: 0.7057316, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -422,6 +422,7 @@ GameObject:
   - component: {fileID: 1888757921064154685}
   - component: {fileID: 7473222286502844408}
   - component: {fileID: 3505532025560995127}
+  - component: {fileID: 3912851525899405505}
   m_Layer: 0
   m_Name: RaceButton
   m_TagString: Untagged
@@ -508,6 +509,19 @@ MonoBehaviour:
   raceInfo: {fileID: 11400000, guid: 5a66f1ae6ec40dc4881d55bd3e2de33e, type: 2}
   icon: {fileID: 6828071913890127536}
   title: {fileID: 3473831187049522116}
+--- !u!114 &3912851525899405505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7775597410716252683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85a3efd0c6c7aa74b8901f873a16505c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NameText: {fileID: 3473831187049522116}
 --- !u!1 &8901739969877723778
 GameObject:
   m_ObjectHideFlags: 0

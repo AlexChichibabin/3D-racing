@@ -1,66 +1,79 @@
-using SpaceShip;
 using System;
+using Racing;
 using UnityEngine;
 
-namespace TowerDefense
-{
-    public class MapCompletion : SingletonBase<MapCompletion>
-    {
-        public const string m_FileName = "completion.dat";
 
+public class MapCompletion : MonoBehaviour, IDependency<LevelSequenceController>
+{
+    public const string m_FileName = "completion.dat";
+
+    [Serializable]
+    private class SeasonScore
+    {
         [Serializable]
-        private class EpisodeScore
+        public class RaceScore
         {
-            public Episode episode;
+            public RaceInfo race;
             public int score;
         }
+        public RaceScore[] racesInSeason;
+        public int score;
+    }
 
-        [SerializeField] private EpisodeScore[] m_CompletionData;
-        public int TotalScores { private set; get; }
-        //[SerializeField] private EpisodeScore[] branchCompletionData;
+    //[SerializeField] private GameObject[] m_Seasons;
+    [SerializeField] private SeasonScore[] m_CompletionDataPerSeason;
+    private LevelSequenceController levelSequenceController;
+    public void Construct(LevelSequenceController obj) => levelSequenceController = obj;
+    public int TotalScores { private set; get; }
 
-        private new void Awake()
+    private void Awake()
+    {
+        //DontDestroyOnLoad(gameObject);
+        Saver<SeasonScore[]>.TryLoad(m_FileName, ref m_CompletionDataPerSeason);
+        TotalScores = 0;
+        foreach (var score in m_CompletionDataPerSeason)
         {
-            base.Awake();
-            Saver<EpisodeScore[]>.TryLoad(m_FileName, ref m_CompletionData);
-            Instance.TotalScores = 0;
-            foreach (var score in m_CompletionData)
-            {
-                Instance.TotalScores += score.score;
-            }
+            TotalScores += score.score;
         }
-
-        public static void SaveEpisodeResult(int levelScore)
+    }
+    public void SaveEpisodeResult(int levelScore)
+    {
+        foreach (var season in m_CompletionDataPerSeason)
         {
-            if (Instance)
-            { 
-                foreach (var item in Instance.m_CompletionData)
-                {   // Сохранение новых очков прохожения
-                    if (item.episode == LevelSequenceController.Instance.CurrentEpisode)
+            season.score = 0;
+            foreach (var item in season.racesInSeason)
+            {   // Сохранение новых очков прохожения
+                if (item.race == levelSequenceController.CurrentRace)
+                {
+                    if (item.score < levelScore)
                     {
-                        if (item.score < levelScore)
-                        {
-                            Instance.TotalScores += levelScore - item.score;
-                            item.score = levelScore;
-                            Saver<EpisodeScore[]>.Save(m_FileName, Instance.m_CompletionData);
-                        }
+                        TotalScores += levelScore - item.score;
+                        item.score = levelScore;
+                        Saver<SeasonScore[]>.Save(m_FileName, m_CompletionDataPerSeason);
                     }
+                    season.score += levelScore;
                 }
-                print($"Episode complete with score {levelScore}");
             }
-            else
-                print($"Episode complete with score {levelScore}");
+            print($"Episode complete with score {levelScore}");
         }
-        public int GetEpisodeScore(Episode m_Episode)
+            
+    }
+    public int GetEpisodeScore(RaceInfo m_Race)
+    {
+        foreach (var season in m_CompletionDataPerSeason)
         {
-            foreach (var data in m_CompletionData)
+            foreach (var data in season.racesInSeason)
             {
-                if (data.episode == m_Episode)
+                if (data.race == m_Race)
                 {
                     return data.score;
                 }
             }
-            return 0;
         }
+        return 0;
+    }
+    public void SetCompletionData(RaceInfo race)
+    {
+
     }
 }

@@ -2,8 +2,6 @@
 using System.IO;
 using UnityEngine;
 
-namespace TowerDefense
-{
     [Serializable]
     public class Saver<T>
     {
@@ -32,25 +30,24 @@ namespace TowerDefense
         public T data;
     }
 
-    public static class FileHandler
+public static class FileHandler
+{
+    public static string Path(string filename)
     {
-        public static string Path(string filename)
-        {
-            return $"{Application.persistentDataPath}/{filename}";
-        }
+        return $"{Application.persistentDataPath}/{filename}";
+    }
 
-        public static void Reset(string filename)
+    public static void Reset(string filename)
+    {
+        var path = Path(filename);
+        if (File.Exists(path))
         {
-            var path = Path(filename);
-            if (File.Exists(path))
-            {
-                File.Delete(path);
-            }
+            File.Delete(path);
         }
+    }
 
-        public static bool HasFile(string filename)
-        {
-            return File.Exists(Path(filename));
-        }
+    public static bool HasFile(string filename)
+    {
+        return File.Exists(Path(filename));
     }
 }

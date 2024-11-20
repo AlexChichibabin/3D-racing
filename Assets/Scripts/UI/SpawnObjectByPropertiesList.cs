@@ -26,9 +26,13 @@ namespace Racing
             for (int i = 0; i < properties.Length; i++)
             {
                 GameObject gameObject = Instantiate(prefab, parent);
-                IScriptableObjectProperty scriptableObject = gameObject.GetComponent<IScriptableObjectProperty>();
-                scriptableObject.ApplyProperty(properties[i]);
+                IScriptableObjectProperty[] scriptableObjects = gameObject.GetComponents<IScriptableObjectProperty>();
+                foreach(var so in scriptableObjects) { so.ApplyProperty(properties[i]); }
             }
+        }
+        public ScriptableObject[] GetPropreties()
+        {
+            return properties;
         }
     }
 }

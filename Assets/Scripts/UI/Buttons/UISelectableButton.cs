@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 namespace Racing
 {
@@ -20,7 +21,7 @@ namespace Racing
         {
             for (int i = 0; i < selectedImage.Length; i++)
             {
-                selectedImage[i].enabled = false;
+                selectedImage[i].enabled = true;
             }
         }
         public override void SetFocus()
@@ -29,7 +30,7 @@ namespace Racing
 
             for (int i = 0; i < selectedImage.Length; i++)
             {
-                selectedImage[i].enabled = true;
+                selectedImage[i].enabled = false;
             }
             OnSelect?.Invoke();
         }
@@ -39,7 +40,7 @@ namespace Racing
 
             for (int i = 0; i < selectedImage.Length; i++)
             {
-                selectedImage[i].enabled = false;
+                selectedImage[i].enabled = true;
             }
             OnUnselect?.Invoke();
         }
