@@ -32,8 +32,10 @@ namespace Racing
         }
         private void OnDestroy()
         {
+            if(buttons == null) return;
             for (int i = 0; i < buttons.Length; i++)
             {
+                if (buttons[i] == null) return;
                 buttons[i].PointerEnter -= OnPointerEnter;
             }
         }
@@ -54,6 +56,14 @@ namespace Racing
                 {
                     selectButtonIndex = i;
                     button.SetFocus();
+                    break;
+                }
+            }
+            for (int i = 0; i < buttons.Length; i++)
+            {
+                if (button != buttons[i])
+                {
+                    buttons[i].SetUnfocus();
                     break;
                 }
             }

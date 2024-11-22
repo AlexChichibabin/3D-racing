@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Racing
@@ -6,6 +7,8 @@ namespace Racing
     public class UIExitButton : UISelectableButton
     {
         [SerializeField] private Text questionText;
+        [SerializeField] private GameObject selectText;
+        [SerializeField] private GameObject exitConfirmPanel;
         [SerializeField] private string[] questionString = new string[]
         {
             "Are you sure?",
@@ -18,8 +21,7 @@ namespace Racing
         }
         public void No()
         {
-            yesCount = 0;
-            questionText.text = questionString[yesCount];
+            ResetQuestion();
             SetUnfocus();
         }
         public void Yes()
@@ -35,6 +37,33 @@ namespace Racing
         private void ExitGame()
         {
             Application.Quit();
+        }
+        private void ResetQuestion()
+        {
+            yesCount = 0;
+            questionText.text = questionString[yesCount];
+        }
+        /*public override void SetFocus()
+        {
+            base.SetFocus();
+            OnExitSelect();
+        }
+        public override void SetUnfocus()
+        {
+            base.SetUnfocus();
+            OnExitUnSelect();
+        }*/
+
+        public void OnExitSelect()
+        {
+            selectText.SetActive(false);
+            exitConfirmPanel.SetActive(true);
+        }
+        public void OnExitUnSelect()
+        {
+            selectText.SetActive(true);
+            exitConfirmPanel.SetActive(false);
+            ResetQuestion();
         }
     }
 }

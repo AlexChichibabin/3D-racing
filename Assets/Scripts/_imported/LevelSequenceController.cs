@@ -1,30 +1,30 @@
+using Racing;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelSequenceController : MonoBehaviour
 {
     public static string MainMenuSceneNickname = "MainMenu";
-    public static string MapSceneNickname = "LevelMap";
+    //public static string MapSceneNickname = "LevelMap";
 
-    public Episode CurrentRace { get; private set; }
+    public RaceLevel CurrentRace { get; private set; }
 
-    public int CurrentLevel { get; private set; }
+    //public int CurrentLevel { get; private set; }
 
     public bool LastLevelResult { get; private set; }
 
-    public void StartEpisode(Episode episode)
+    public void StartRace(RaceLevel race)
     {
-        CurrentRace = episode;
-        CurrentLevel = 0;
-
-        if (CurrentRace.Levels.Length > 0 && CurrentRace.Levels[CurrentLevel] != null)
-
-            SceneManager.LoadScene(episode.Levels[CurrentLevel]);
+        CurrentRace = race;
+        //CurrentLevel = 0;
+        //if (CurrentRace.Levels.Length > 0 && CurrentRace.Levels[CurrentLevel] != null)
+        if (CurrentRace != null)
+            SceneManager.LoadScene(CurrentRace.Race.SceneName);
     }
 
     public void RestartLevel()
     {
-        SceneManager.LoadScene(CurrentRace.Levels[CurrentLevel]);
+        SceneManager.LoadScene(CurrentRace.Race.SceneName);
     }
 
     public void FinishCurrentLevel(bool success)
@@ -35,7 +35,7 @@ public class LevelSequenceController : MonoBehaviour
 
     }
 
-    public void AdvanceLevel()
+    /*public void AdvanceLevel()
     {
         if (CurrentRace)
         {
@@ -54,5 +54,5 @@ public class LevelSequenceController : MonoBehaviour
         {
             SceneManager.LoadScene(MapSceneNickname);
         }
-    }
+    }*/
 }

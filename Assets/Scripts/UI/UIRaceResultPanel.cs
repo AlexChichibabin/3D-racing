@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace Racing
 {
-    public class UIRaceResultPanel : MonoBehaviour, IDependency<RaceResultTime>, IDependency<RaceTimeTracker>
+    public class UIRaceResultPanel : MonoBehaviour, IDependency<RaceResultTime>, IDependency<RaceTimeTracker>, IDependency<RaceLevelController>
     {
         [SerializeField] private Text goldTime;
         [SerializeField] private Text recordTime;
@@ -12,9 +12,10 @@ namespace Racing
 
         private RaceTimeTracker raceTimeTracker;
         private RaceResultTime raceResultTime;
+        private RaceLevelController raceLevelController;
         public void Construct(RaceTimeTracker obj) => raceTimeTracker = obj;
         public void Construct(RaceResultTime obj) => raceResultTime = obj;
-
+        public void Construct(RaceLevelController obj) => raceLevelController = obj;
         private void Start()
         {
             raceResultTime.ResultUpdated += OnResultUpdated;
@@ -33,7 +34,7 @@ namespace Racing
         }
         private void UpdateResultsOnPanel()
         {
-            goldTime.text = StringTime.SecondToTimeString(raceResultTime.GoldTime);
+            goldTime.text = StringTime.SecondToTimeString(raceLevelController.GoldTime);
             recordTime.text = StringTime.SecondToTimeString(raceResultTime.PlayerRecordTime);
             currentResultTime.text = StringTime.SecondToTimeString(raceResultTime.CurrentTime);
         }

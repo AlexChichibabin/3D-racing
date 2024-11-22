@@ -25,6 +25,7 @@ using UnityEngine;
             var wrapper = new Saver<T>{ data = data };
             var dataString = JsonUtility.ToJson(wrapper);
             File.WriteAllText(FileHandler.Path(filename), dataString);
+            Debug.Log("saver ok");
         }
 
         public T data;

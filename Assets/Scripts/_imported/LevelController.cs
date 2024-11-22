@@ -7,7 +7,7 @@ namespace SpaceShip
     {
         bool IsCompleted { get; }
     }
-    public class LevelController : SingletonBase<LevelController>, IDependency<LevelSequenceController>
+    public class LevelController : MonoBehaviour, IDependency<LevelSequenceController>
     {
         [SerializeField] protected float m_ReferenceTime;
         public float ReferenceTime => m_ReferenceTime;

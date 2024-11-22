@@ -6,9 +6,11 @@ namespace Racing
     public class RaceLevel : MonoBehaviour, IDependency<MapCompletion>, IScriptableObjectProperty
     {
         private MapCompletion mapCompletion;
-        private RaceInfo m_Race;
+        [SerializeField] private RaceInfo m_Race;
         [SerializeField] private Text m_NameText;
         private int m_StarsAmount;
+        private GameObject hidingObject;
+        public RaceInfo Race => m_Race;
         public void Construct(MapCompletion obj) => mapCompletion = obj;
         //[SerializeField] private LevelVisualScores m_VisualScores;
         //[SerializeField] private MapSceneAnimation m_MapAnimation;
@@ -16,10 +18,13 @@ namespace Racing
         private void Awake()
         {
             //m_VisualScores = GetComponentInChildren<LevelVisualScores>();
+            hidingObject = transform.GetChild(0).gameObject;
         }
         private void Start()
         {
             ApplyProperty(m_Race);
+            Initialize();
+            Debug.Log(m_StarsAmount);
         }
         public void AnimationBeforeLoadLevel()
         {
@@ -39,5 +44,6 @@ namespace Racing
             m_Race = property as RaceInfo;
             m_NameText.text = m_Race.Title;
         }
+        public GameObject GetHidingObject() => hidingObject;
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace Racing
 {
-    public class UIRaceRecordTime : MonoBehaviour, IDependency<RaceResultTime>, IDependency<RaceStateTracker>
+    public class UIRaceRecordTime : MonoBehaviour, IDependency<RaceResultTime>, IDependency<RaceStateTracker>, IDependency<RaceLevelController>
     {
         [SerializeField] private GameObject goldRecordObject;
         [SerializeField] private GameObject playerRecordObject;
@@ -13,8 +13,10 @@ namespace Racing
 
         private RaceResultTime resultTime;
         private RaceStateTracker stateTracker;
+        private RaceLevelController raceLevelController;
         public void Construct(RaceResultTime obj) => resultTime = obj;
         public void Construct(RaceStateTracker obj) => stateTracker = obj;
+        public void Construct(RaceLevelController obj) => raceLevelController = obj;
 
         private void Start()
         {
@@ -31,10 +33,10 @@ namespace Racing
         }
         private void OnStarted()
         {
-            if (resultTime.PlayerRecordTime > resultTime.GoldTime || resultTime.RecordWasSet == false)
+            if (resultTime.PlayerRecordTime > raceLevelController.GoldTime || resultTime.RecordWasSet == false)
             {
                 goldRecordObject.SetActive(true);
-                goldRecordTime.text = StringTime.SecondToTimeString(resultTime.GoldTime);
+                goldRecordTime.text = StringTime.SecondToTimeString(raceLevelController.GoldTime);
             }
             if (resultTime.RecordWasSet == true)
             {

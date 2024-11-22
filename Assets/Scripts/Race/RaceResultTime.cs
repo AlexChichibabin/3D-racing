@@ -4,26 +4,29 @@ using UnityEngine.SceneManagement;
 
 namespace Racing
 {
-    public class RaceResultTime : MonoBehaviour, IDependency<RaceTimeTracker>, IDependency<RaceStateTracker>
+    public class RaceResultTime : MonoBehaviour, IDependency<RaceTimeTracker>, IDependency<RaceStateTracker>, IDependency<RaceLevelController>
     {
         public const string SaveMark = "_player_best_time";
 
         public event UnityAction ResultUpdated;
 
-        [SerializeField] private float goldTime;
-
         private float playerRecordTime;
+        private float commonRecordTime;
         private float currentTime;
 
         public float PlayerRecordTime => playerRecordTime;
-        public float GoldTime => goldTime;
+        /*public float GoldTime => goldTime;
+        public float SilverTime => silverTime;
+        public float BronzeTime => bronzeTime;*/
         public float CurrentTime => currentTime;
         public bool RecordWasSet => playerRecordTime != 0;
 
         private RaceTimeTracker timeTracker;
         private RaceStateTracker stateTracker;
+        private RaceLevelController raceLevelController;
         public void Construct(RaceTimeTracker obj) => timeTracker = obj;
         public void Construct(RaceStateTracker obj) => stateTracker = obj;
+        public void Construct(RaceLevelController obj) => raceLevelController = obj;
 
         private void Start()
         {
@@ -37,24 +40,16 @@ namespace Racing
         private void OnCompleted()
         {
             currentTime = timeTracker.CurrentTime;
+            float absoluteRecord = raceLevelController.GetAbsoluteRecord();
 
-            float absoluteRecord = GetAbsoluteRecord();
-            
-            if (currentTime < absoluteRecord || playerRecordTime == 0)
-            {
-                playerRecordTime = currentTime;
-                Save();
-            }
+            if (currentTime < playerRecordTime || playerRecordTime == 0) playerRecordTime = currentTime;
+            if (currentTime < absoluteRecord || playerRecordTime == 0) commonRecordTime = currentTime;
+
+            Save();
+
             ResultUpdated?.Invoke();
         }
-        public float GetAbsoluteRecord()
-        {
-            if(playerRecordTime < goldTime && playerRecordTime != 0)
-                return playerRecordTime;
-            else 
-                return goldTime;
-        }
-        private void Load()
+        private void Load()                   // Use Saver
         {
             playerRecordTime = PlayerPrefs.GetFloat(SceneManager.GetActiveScene().name + SaveMark, 0);
         }

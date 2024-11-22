@@ -33,6 +33,7 @@ namespace Racing
         {
             Bind<Pauser>(pauser, monoBehaviourInScene);
             Bind<MapCompletion>(mapCompletion, monoBehaviourInScene);
+            Bind<LevelSequenceController>(levelSequenceController, monoBehaviourInScene);
         }
         private void OnLoadScene(Scene arg0, LoadSceneMode arg1)
         {

@@ -1,28 +1,41 @@
 using SpaceShip;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Racing
 {
-    public class RaceLevelController : LevelController, IDependency<MapCompletion>
+    public class RaceLevelController : LevelController, IDependency<MapCompletion>, IDependency<RaceStateTracker>, IDependency<RaceResultTime>
     {
-        private int m_LevelScore = 3;
+        [SerializeField] private float goldTime;
+        [SerializeField] private float silverTime;
+        [SerializeField] private float bronzeTime;
+
+        private RaceStateTracker raceStateTracker;
+        private RaceResultTime raceResultTime;
         private MapCompletion m_MapCompletion;
+
+        public const string SaveMark = "_Reward";
+
+        private float currentTime;
+        private float playerRecordTime;
+
+        private int m_LevelScore = 0;
+
+        public float GoldTime => goldTime;
+        public float SilverTime => silverTime;
+        public float BronzeTime => bronzeTime;
+
         public void Construct(MapCompletion obj) => m_MapCompletion = obj;
+        public void Construct(RaceStateTracker obj) => raceStateTracker = obj;
+        public void Construct(RaceResultTime obj) => raceResultTime = obj;
 
         private new void Start()
         {
             base.Start();
 
-            /*MainMenuSceneChange.Instance.OnGamePaused += (paused) =>
-            {
-                if(paused) StopLevelActivity();
-                else ContinueLevelActivity();
-            };
-
-            m_ReferenceTime += Time.time;*/
-
-            m_EventLevelCompleted.AddListener(() =>
+            /*m_EventLevelCompleted.AddListener(() =>
                 {
                     //StopLevelActivity();
                     if (m_ReferenceTime < Time.time)
@@ -31,81 +44,47 @@ namespace Racing
                     }
                     m_MapCompletion.SaveEpisodeResult(m_LevelScore);
                 }
-            );
+            );*/
+            raceResultTime.ResultUpdated += OnResultUpdated;
+            raceStateTracker.Completed += OnCompleted;
+        }
+        private void OnCompleted() { }
+        private void OnResultUpdated()
+        {
+            currentTime = raceResultTime.CurrentTime;
+
+            m_LevelScore = CheckReward();
+            m_MapCompletion.SaveEpisodeResult(m_LevelScore);
         }
 
-        /*private Vector2 m_VelocityBackup;
-        private GameObject m_AbilitiesBackup;
-        private List<GameObject> m_WavesBackup = new List<GameObject>();*/
-
-        /*private void StopLevelActivity()
+        public float GetAbsoluteRecord()
         {
-            foreach (var enemy in FindObjectsOfType<Enemy>())
-            {
-                enemy.GetComponent<Ship>().enabled = false;
-                var enemyRB = enemy.GetComponent<Rigidbody2D>();
-                m_VelocityBackup = enemyRB.velocity;
-                enemyRB.velocity = Vector3.zero;
-            }
-            void DisableAll<T>() where T : MonoBehaviour
-            {
-                foreach (var obj in FindObjectsOfType<T>())
-                {
-                    obj.enabled = false;
-                }
-            }
-            void DisableAllObject<T>() where T : MonoBehaviour // Только для волн
-            {
-                foreach (var obj in FindObjectsOfType<T>())
-                {
-                    obj.gameObject.SetActive(false);
-                    m_WavesBackup.Add(obj.gameObject);
-                }
-            }
-            DisableAllObject<EnemyWave>();
-            DisableAll<Projectile>();
-            DisableAll<Tower>();
-            DisableAll<NextWaveGUI>();
-            DisableAll<Spell>();
-            DisableAll<BuildSite>();
-            m_AbilitiesBackup = FindObjectOfType<Abilities>().gameObject;
-            m_AbilitiesBackup.SetActive(false);
-            GetComponent<TDPlayer>().enabled = false;
-            TryGetComponent<TimeLevelCondition>(out var tlc);
-            if (tlc) tlc.LevelIsStoped = true;
+            playerRecordTime = raceResultTime.PlayerRecordTime;
+
+            if (playerRecordTime < goldTime && playerRecordTime != 0)
+                return playerRecordTime;
+            else if (playerRecordTime < silverTime && playerRecordTime != 0)
+                return goldTime;
+            else if (playerRecordTime < bronzeTime && playerRecordTime != 0) 
+                return silverTime;
+            else return bronzeTime;
         }
-
-        private void ContinueLevelActivity()
+        private int CheckReward()
         {
-            foreach (var enemy in FindObjectsOfType<Enemy>())
-            {
-                enemy.GetComponent<Ship>().enabled = true;
-                enemy.GetComponent<Rigidbody2D>().velocity = m_VelocityBackup;
-            }
-            void EnableAll<T>() where T : MonoBehaviour
-            {
-                foreach (var obj in FindObjectsOfType<T>())
-                {
-                    obj.enabled = true;
-                }
-            }
-            void EnableAllObject<T>() where T : MonoBehaviour // Только для волн
-            {
-                foreach (var obj in m_WavesBackup)
-                {
-                    obj.gameObject.SetActive(true);
-                }
-            }
-            EnableAllObject<EnemyWave>();
-            EnableAll<Projectile>();
-            EnableAll<Tower>();
-            EnableAll<NextWaveGUI>();
-            EnableAll<Spell>();
-            EnableAll<BuildSite>();
-            m_AbilitiesBackup.SetActive(true);
-            GetComponent<TDPlayer>().enabled = true;
-            TryGetComponent<TimeLevelCondition>(out var tlc);
-            if (tlc) tlc.LevelIsStoped = false;
+            playerRecordTime = currentTime;  //raceResultTime.PlayerRecordTime;
+
+            if (playerRecordTime < goldTime) return 3;
+            else if (playerRecordTime < silverTime) return 2;
+            else if (playerRecordTime < bronzeTime) return 1;
+            else return 0;
+        }
+        /*private void Load()                   // Use Saver
+        {
+            playerRecordTime = PlayerPrefs.GetFloat(SceneManager.GetActiveScene().name + SaveMark, 0);
+        }
+        private void Save()
+        {
+            PlayerPrefs.SetFloat(SceneManager.GetActiveScene().name + SaveMark, m_LevelScore);
         }*/
     }
 }

@@ -1,8 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 
 namespace Racing
 {
@@ -10,8 +8,8 @@ namespace Racing
     {
         [SerializeField] protected Image[] selectedImage;
 
-        public UnityEvent OnSelect;
-        public UnityEvent OnUnselect;
+        public UnityEvent SelectEvent;
+        public UnityEvent UnselectEvent;
 
         private void Start()
         {
@@ -32,7 +30,7 @@ namespace Racing
             {
                 selectedImage[i].enabled = false;
             }
-            OnSelect?.Invoke();
+            SelectEvent?.Invoke();
         }
         public override void SetUnfocus()
         {
@@ -42,7 +40,7 @@ namespace Racing
             {
                 selectedImage[i].enabled = true;
             }
-            OnUnselect?.Invoke();
+            UnselectEvent?.Invoke();
         }
     }
 }

@@ -20,8 +20,6 @@ namespace Racing
             }
             public RaceScore[] racesInSeason;
             public int score;
-            /*public void RaceScoreInitialize(int Length) =>
-                racesInSeason = new RaceScore[Length];*/
         }
 
         [SerializeField] private SeasonScore[] m_CompletionDataPerSeason;
@@ -31,12 +29,14 @@ namespace Racing
 
         private void Awake()
         {
-            //DontDestroyOnLoad(gameObject);
-            //Saver<SeasonScore[]>.TryLoad(m_FileName, ref m_CompletionDataPerSeason);
+            Saver<SeasonScore[]>.TryLoad(m_FileName, ref m_CompletionDataPerSeason);
             TotalScores = 0;
-            foreach (var score in m_CompletionDataPerSeason)
+            foreach (var season in m_CompletionDataPerSeason)
             {
-                TotalScores += score.score;
+                foreach (var score in season.racesInSeason)
+                {
+                    TotalScores += score.score;
+                }
             }
         }
         public void SaveEpisodeResult(int levelScore)
@@ -46,13 +46,13 @@ namespace Racing
                 season.score = 0;
                 foreach (var item in season.racesInSeason)
                 {   // Сохранение новых очков прохожения
-                    if (item.race == levelSequenceController.CurrentRace)
+                    if (item.race == levelSequenceController.CurrentRace.Race)
                     {
                         if (item.score < levelScore)
                         {
                             TotalScores += levelScore - item.score;
                             item.score = levelScore;
-                            //Saver<SeasonScore[]>.Save(m_FileName, m_CompletionDataPerSeason);
+                            Saver<SeasonScore[]>.Save(m_FileName, m_CompletionDataPerSeason);
                         }
                         season.score += levelScore;
                     }
