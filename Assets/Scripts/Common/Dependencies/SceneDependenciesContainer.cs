@@ -12,6 +12,7 @@ namespace Racing
         [SerializeField] private RaceTimeTracker timeTracker;
         [SerializeField] private RaceResultTime resultTime;
         [SerializeField] private RaceLevelController raceLevelController;
+        [SerializeField] private CarRespawner carRespawner;
 
 
 
@@ -25,6 +26,7 @@ namespace Racing
             Bind<RaceTimeTracker>(timeTracker, monoBehaviourInScene);
             Bind<RaceResultTime>(resultTime, monoBehaviourInScene);
             Bind<RaceLevelController>(raceLevelController, monoBehaviourInScene);
+            Bind<CarRespawner>(carRespawner, monoBehaviourInScene);
         }
         private void Awake()
         {

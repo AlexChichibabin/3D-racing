@@ -13,6 +13,9 @@ namespace Racing
         private Car car;
         private CarInputControl carInputControl;
 
+        /*[Header("OutOfTeack")]
+        [SerializeField] private Collider[] colliders;*/
+
         public void Construct(RaceStateTracker obj) => raceStateTracker = obj;
         public void Construct(Car obj) => car = obj;
         public void Construct(CarInputControl obj) => carInputControl = obj;
@@ -42,8 +45,10 @@ namespace Racing
 
             car.Respawn(respawnTrackPoint.transform.position + respawnTrackPoint.transform.up * respawnHeight,
                 respawnTrackPoint.transform.rotation);
+            //Debug.Log("ok");
+            //car.GetComponentInChildren<FallRestarter>().SetRespawner(this);
+
             carInputControl.Reset();
         }
-
     }
 }

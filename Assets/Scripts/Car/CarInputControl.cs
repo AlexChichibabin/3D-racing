@@ -17,8 +17,6 @@ namespace Racing
         private float horizontalAxis;
         private float handBrakeAxis;
 
-
-
         private void Update()
         {
             wheelSpeed = car.WheelSpeed;
